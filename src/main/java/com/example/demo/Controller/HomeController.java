@@ -1,13 +1,7 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Model.Education;
-import com.example.demo.Model.Experience;
-import com.example.demo.Model.Person;
-import com.example.demo.Model.Skill;
-import com.example.demo.Repositories.EducationRepo;
-import com.example.demo.Repositories.ExperienceRepo;
-import com.example.demo.Repositories.PersonRepo;
-import com.example.demo.Repositories.SkillRepo;
+import com.example.demo.Model.*;
+import com.example.demo.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +25,9 @@ public class HomeController {
 
     @Autowired
     SkillRepo skillRepo;
+
+    @Autowired
+    JobRepo jobRepo;
 
 
     //Below will be map of pathing for web app
@@ -133,6 +130,29 @@ public class HomeController {
         return "completedResume";
     }
 
+    @GetMapping("/addJob")
+    public String recruiterForm(Model model){
+        Job job = new Job();
+
+        model.addAttribute("job", job);
+
+        return "jobForm";
+
+    }
+
+    @PostMapping("/addJob")
+    public String addJob(@Valid @ModelAttribute("job") Job job, Model model, BindingResult result){
+
+        if (result.hasErrors()) {
+            return "jobForm";
+        }
+
+        jobRepo.save(job);
+
+        return "availableJobs";
+    }
+
+    /*Mapping for all rest of NavBar*/
 
     @GetMapping("/summary")
     public String showSummary() {
@@ -174,6 +194,7 @@ public class HomeController {
         return "coverLetter";
     }
 
+    /*Update Pathing*/
     @RequestMapping("/updatePerson/{id}")
     public String updatePerson(@PathVariable("id") long id, Model model) {
         model.addAttribute("person", personRepo.findOne(id));
@@ -197,6 +218,14 @@ public class HomeController {
         model.addAttribute("skill", skillRepo.findOne(id));
         return "skillsForm";
     }
+
+    @RequestMapping("/updateJob/{id}")
+    public String updateJob(@PathVariable("id") long id, Model model) {
+        model.addAttribute("job", jobRepo.findOne(id));
+        return "jobForm";
+    }
+
+
 }
 
 
