@@ -26,6 +26,8 @@ public class AppUser {
     @Column(name = "username")
     private String username;
 
+   // private String lastcommit;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
