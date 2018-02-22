@@ -1,9 +1,8 @@
 package com.example.demo.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Skill {
@@ -12,10 +11,22 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(unique = true)
     private String skillName;
     private String rating;
 
-    public Skill() {
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
+    }
+
+    @ManyToMany(mappedBy = "skills", fetch = FetchType.LAZY)
+    private Set<Job> jobs;
+
+    public Skill() {this.jobs = new HashSet<>();
     }
 
     public long getId() {

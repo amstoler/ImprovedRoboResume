@@ -115,7 +115,6 @@ public class HomeController {
             return "skillsForm";
         }
         skillRepo.save(skill);
-        model.addAttribute("skilllist", skillRepo.findAll());
 
         return "completedResume";
     }
@@ -129,6 +128,7 @@ public class HomeController {
         model.addAttribute("person", personRepo.findAll());
         model.addAttribute("education", educationRepo.findAll());
         model.addAttribute("experience", experienceRepo.findAll());
+        model.addAttribute("skill", skillRepo.findAll());
 
         return "completedResume";
     }
@@ -192,11 +192,11 @@ public class HomeController {
         return "experienceForm";
     }
 
-    /*@RequestMapping("/updateSkill/{id}")
+    @RequestMapping("/updateSkill/{id}")
     public String updateSkill(@PathVariable("id") long id, Model model) {
         model.addAttribute("skill", skillRepo.findOne(id));
-        return "skillForm";
-    }*/
+        return "skillsForm";
+    }
 }
 
 
