@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Completed Resume</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+</head>
+<body>
+<div th:replace="fragments::navbarfragement"></div>
+
+<h2>Person Table</h2>
+
+    <div th:each="person : ${person}">
+    <img th:src="${person.image}"/>
+    <h4 th:inline="text"> Summary: [[${person.summary}]] </h4>
+    <h4 th:inline="text"> Name: [[${person.name}]] </h4>
+    <h4 th:inline="text"> Email: [[${person.email}]] </h4>
+    <h4 th:inline="text"> Reference: [[${person.reference}]] </h4>
+    <a th:href="@{/updatePerson/{id}(id=${person.id})}">Update</a>
+
+    </div>
+
+    <h2>Education Table </h2>
+
+    <div th:each="education : ${education}">
+        <h4 th:inline="text"> Degree: [[${education.degree}]] </h4>
+        <h4 th:inline="text"> Univ. Name: [[${education.univName}]] </h4>
+        <h4 th:inline="text"> Graduation Year: [[${education.gradYear}]] </h4>
+        <a th:href="@{/updateEducation/{id}(id=${education.id})}">Update</a>
+
+    </div>
+
+<h2>Experience Table </h2>
+
+<div th:each="experience : ${experience}">
+    <h4 th:inline="text"> jobTitle: [[${experience.jobTitle}]] </h4>
+    <h4 th:inline="text"> companyName: [[${experience.companyName}]] </h4>
+    <h4 th:inline="text"> dates: [[${experience.dates}]] </h4>
+    <h4 th:inline="text"> duties: [[${experience.duties}]] </h4>
+
+    <a th:href="@{/updateExperience/{id}(id=${experience.id})}">Update</a>
+
+</div>
+
+<h2>Skills Table </h2>
+
+<div th:each="skill : ${skill}">
+    <h4 th:inline="text"> skillName: [[${skill.skillName}]] </h4>
+    <h4 th:inline="text"> rating: [[${skill.rating}]] </h4>
+    <a th:href="@{/updateSkill/{id}(id=${skill.id})}">Update</a>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
