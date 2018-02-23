@@ -115,9 +115,53 @@ public class HomeController {
         return "completedResume";
     }
 
+    //Week 5 Start Relationship between Job and skills
+    @GetMapping("/addskillstojob/{id}")
+    public String addSkill(@PathVariable("id") long jobID, Model model){
+        Job thisJob = jobRepo.findOne(new Long(jobID));
+        Iterable skillsInJob = thisJob.getSkills();
 
-//    When compolete with resume create getmsp class for all models from repo and print our theirs list
-//    kinda like this
+        model.addAttribute("job", thisJob);
+        model.addAttribute("skillList", skillRepo.findAllByJobsContaining(thisJob));
+        return "jobaddskill";
+    }
+
+    @GetMapping("/addjobstoactor/{id}")
+    public String addJob(@PathVariable("id") long skillID, Model model){
+        model.addAttribute("skill", skillRepo.findOne(new Long(skillID)));
+        model.addAttribute("jobList", jobRepo.findAll());
+        return "jobaddskill";
+    }
+
+    @PostMapping("/addjobstoskill/{jobid}")
+    public String addJobsToSkill(@RequestParam("skills") String skillID, @PathVariable("jobid") long jobID, @ModelAttribute("aSkill") Skill s, Model model) {
+
+        Job j =jobRepo.findOne(new Long(jobID));
+        j.addSkill(skillRepo.findOne(new Long(jobID)));
+        jobRepo.save(j);
+        model.addAttribute("skillList", skillRepo.findAll());
+        model.addAttribute("jobList", jobRepo.findAll());
+        return "redirect:/";
+    }
+
+    @RequestMapping("/search")
+    public String SearchResult() {
+        //Get skills matching a string
+        Iterable<Skill> skills = skillRepo.findAllBySkillNameContainingIgnoreCase("Java");
+
+        for (Skill s : skills) {
+            System.out.println(s.getSkillName());
+        }
+//Show the Jobs the skills were in
+        for (Job j : jobRepo.findAllBySkillsIsIn(skills)){
+            System.out.println(j.getTitle());
+        }
+        return "redirect:/";
+
+    }
+
+//Week 5 End of Relationship between Job and skills
+//    When complete with resume create getmap class for all models from repo and print our theirs list
 
     @GetMapping("/completedResume")
     public String completeresume(Model model) {
