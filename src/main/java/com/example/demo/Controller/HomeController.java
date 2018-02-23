@@ -16,7 +16,6 @@ public class HomeController {
     @Autowired
     PersonRepo personRepo;
 
-
     @Autowired
     EducationRepo educationRepo;
 
@@ -193,6 +192,22 @@ public class HomeController {
     public String showCoverLetter() {
         return "coverLetter";
     }
+
+    @GetMapping("/availableJobs")
+    public String showAvailableJobs() {
+        return "availableJobs";
+    }
+
+    @GetMapping("/matchedJobs")
+    public String showMatchedJobs() {
+        return "matchedJobs";
+    }
+
+    @GetMapping("/references")
+    public String showReferences() {
+        return "references";
+    }
+
 
     /*Update Pathing*/
     @RequestMapping("/updatePerson/{id}")

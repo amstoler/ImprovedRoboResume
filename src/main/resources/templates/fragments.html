@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Fragments</title>
@@ -46,6 +46,18 @@
 
             <li class="nav-item" >
                 <a class="nav-link" th:href="@{/addJob}">Add Job</a>
+            </li>
+
+            <li class="nav-item" >
+                <a class="nav-link" th:href="@{/availableJobs}">Avaialble Jobs</a>
+            </li>
+
+            <li class="nav-item" >
+                <a class="nav-link" th:href="@{/matchedJobs}">Matched Jobs</a>
+            </li>
+
+            <li class="nav-item" >
+                <a sec:authorize="hasAuthority('APPLICANT')" class="nav-link" th:href="@{/references}">References</a>
             </li>
 
         </ul>

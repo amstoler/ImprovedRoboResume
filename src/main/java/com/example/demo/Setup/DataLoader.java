@@ -42,21 +42,7 @@ public class DataLoader implements CommandLineRunner {
 
         //Add test data for users
 
-        /* @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "username")
-    private String username;*/
-
+        //Sample User data
         AppUser user = new AppUser();
         user.setEmail("ariel@gmail.com");
         user.setPassword("password");
@@ -70,7 +56,7 @@ public class DataLoader implements CommandLineRunner {
         user.setEmail("ashu@yahoo.com");
         user.setPassword("password");
         user.setFirstName("Ashu");
-        user.setLastName("Jaguar");
+        user.setLastName("Jaguar2018");
         user.setUsername("employer");
         user.addRole(roleRepo.findAppRoleByRoleName("EMPLOYER"));
         userRepo.save(user);
@@ -84,6 +70,7 @@ public class DataLoader implements CommandLineRunner {
         user.addRole(roleRepo.findAppRoleByRoleName("RECRUITER"));
         userRepo.save(user);
 
+        //Sample Skill Data
         Skill aSkill = new Skill();
         aSkill.setRating("proficient");
         aSkill.setSkillName("skill");
@@ -99,6 +86,7 @@ public class DataLoader implements CommandLineRunner {
         aSkill.setSkillName("newer skill");
         skillRepo.save(aSkill);
 
+        //Sample Education Data
         Education e = new Education();
         e.setDegree("A course");
         e.setUnivName("Institution");
@@ -108,27 +96,43 @@ public class DataLoader implements CommandLineRunner {
         e = new Education();
         e.setDegree("Another course");
         e.setUnivName("Another Institution");
-        e.setGradYear(2018);
+        e.setGradYear(2015);
         educationRepo.save(e);
 
         Experience workexp = new Experience();
         workexp.setDuties("Duty 1");
         workexp.setCompanyName("An organization");
+        workexp.setDates("1000 BCE - 800 BCE");
         workexp.setJobTitle("A Position");
         experienceRepo.save(workexp);
 
+        //Sample Experience Data
         workexp = new Experience();
         workexp.setDuties("Duty 2");
         workexp.setCompanyName("Another organization");
+        workexp.setDates("1990- Present");
         workexp.setJobTitle("Anoter Position");
         experienceRepo.save(workexp);
 
         workexp = new Experience();
         workexp.setDuties("Duty 3");
         workexp.setCompanyName("Yet Another organization");
+        workexp.setDates("2016-2018");
         workexp.setJobTitle("Yet Anoter Position");
         experienceRepo.save(workexp);
 
+        // Sample Job Data
+        Job job= new Job();
+        job.setOrgination("Microsoft");
+        job.setTitle("Web Developer");
+        job.setJobDescription("Hard Work");
+        job.setSkillsRequired("Java");
+
+        job = new Job();
+        job.setOrgination("Google");
+        job.setTitle("Database Admin");
+        job.setJobDescription("Manage data");
+        job.setSkillsRequired("MySQL");
 
 
     }

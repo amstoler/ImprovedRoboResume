@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Completed Resume</title>
@@ -18,7 +18,7 @@
     <h4 th:inline="text"> Name: [[${person.name}]] </h4>
     <h4 th:inline="text"> Email: [[${person.email}]] </h4>
     <h4 th:inline="text"> Reference: [[${person.reference}]] </h4>
-    <a th:href="@{/updatePerson/{id}(id=${person.id})}">Update</a>
+    <a sec:authorize="hasAuthority('APPLICANT')" th:href="@{/updatePerson/{id}(id=${person.id})}">Update</a>
 
     </div>
 
@@ -28,7 +28,7 @@
         <h4 th:inline="text"> Degree: [[${education.degree}]] </h4>
         <h4 th:inline="text"> Univ. Name: [[${education.univName}]] </h4>
         <h4 th:inline="text"> Graduation Year: [[${education.gradYear}]] </h4>
-        <a th:href="@{/updateEducation/{id}(id=${education.id})}">Update</a>
+        <a sec:authorize="hasAuthority('APPLICANT')" th:href="@{/updateEducation/{id}(id=${education.id})}">Update</a>
 
     </div>
 
@@ -40,7 +40,7 @@
     <h4 th:inline="text"> dates: [[${experience.dates}]] </h4>
     <h4 th:inline="text"> duties: [[${experience.duties}]] </h4>
 
-    <a th:href="@{/updateExperience/{id}(id=${experience.id})}">Update</a>
+    <a sec:authorize="hasAuthority('APPLICANT')" th:href="@{/updateExperience/{id}(id=${experience.id})}">Update</a>
 
 </div>
 
@@ -49,7 +49,7 @@
 <div th:each="skill : ${skill}">
     <h4 th:inline="text"> skillName: [[${skill.skillName}]] </h4>
     <h4 th:inline="text"> rating: [[${skill.rating}]] </h4>
-    <a th:href="@{/updateSkill/{id}(id=${skill.id})}">Update</a>
+    <a sec:authorize="hasAuthority('APPLICANT')" th:href="@{/updateSkill/{id}(id=${skill.id})}">Update</a>
 
 </div>
 

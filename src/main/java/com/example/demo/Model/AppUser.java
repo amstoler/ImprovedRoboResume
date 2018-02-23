@@ -1,7 +1,6 @@
 package com.example.demo.Model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -85,6 +84,7 @@ public class AppUser {
         this.username = username;
     }
 
+//Creating an add method
     public void addRole(AppRole role)
     {
         this.roles.add(role);

@@ -19,7 +19,7 @@ public class Job {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "job_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
-
+    //This needs to be instantiated in the construtor so you can use it to add and remove individual skills
     private Set<Skill> skills;
 
     public Job() { this.skills = new HashSet<>(); }
@@ -30,6 +30,12 @@ public class Job {
 
     public void setOrginization(String orginization) {
         Orginization = orginization;
+    }
+
+    //Create an add method
+    public void addSkill(Skill skill )
+    {
+        this.skills.add(skill);
     }
 
     public Set<Skill> getSkills() {
