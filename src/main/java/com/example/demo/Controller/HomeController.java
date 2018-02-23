@@ -126,7 +126,7 @@ public class HomeController {
         return "jobaddskill";
     }
 
-    @GetMapping("/addjobstoactor/{id}")
+    @GetMapping("/addjobstoskill/{id}")
     public String addJob(@PathVariable("id") long skillID, Model model){
         model.addAttribute("skill", skillRepo.findOne(new Long(skillID)));
         model.addAttribute("jobList", jobRepo.findAll());

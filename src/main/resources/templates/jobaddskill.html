@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Job Add Skill</title>
+</head>
+<body>
+<div th:replace="fragments::navbarfragement"></div>
+
+ <form th:action="@{/addjobstoskill/{jobid}(jobid=${job.id})}" th:object="${aJob}" method="post">
+  <input type="text" th:value="${job.id}"/>
+     <label th:inline="text"> Adding skill for [[${job.title}]]</label>
+
+     <select name="skills">
+         <option th:each="aJob:${skillList}" th:value="${aSkill.id}" th:text="${aSkill.skillName}"> </option>
+     </select>
+
+     <input type="submit" value="Add skill"/>
+
+ </form>
+</body>
+</html>
